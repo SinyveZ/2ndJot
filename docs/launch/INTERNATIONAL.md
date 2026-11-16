@@ -132,7 +132,7 @@ It uses an **ad-hoc signature**, without Developer ID signing or Apple notarizat
 
 ### What has been tested?
 
-The local check script covers **21 application scenarios per language (42 total)**, localization resources, and two geometry checks. CI covers building, signature and bundled resources, geometry, and one isolated Markdown save per language. These are different scopes. Actual results, SDKs, commits, and CI run links belong in the [verification record](VERIFICATION.md); this FAQ does not claim that a pending run passed or replace cross-machine testing.
+The local check script covers **22 application scenarios per language (44 total)**, localization resources, and two geometry checks. CI covers building, signature and bundled resources, geometry, and one isolated Markdown save per language. These are different scopes. Actual results, SDKs, commits, and CI run links belong in the [verification record](VERIFICATION.md); this FAQ does not claim that a pending run passed or replace cross-machine testing.
 
 ### What is the license?
 

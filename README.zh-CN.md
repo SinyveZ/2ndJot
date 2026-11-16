@@ -77,7 +77,7 @@ shasum -a 256 "2ndJot-1.6.0-arm64.zip"
 ./tools/check.sh  # 隔离自检，需要已登录的 macOS 图形会话
 ```
 
-脚本为每种语言安排 21 个应用场景，共 42 个，另有本地化资源和两组几何检查；这是检查范围，实际结果以验证记录为准。可用 `./tools/preview.sh settings en` 或 `./tools/preview.sh settings zh-Hans` 打开独立的英文／中文设置预览。
+脚本为每种语言安排 22 个应用场景，共 44 个，另有本地化资源和两组几何检查；这是检查范围，实际结果以验证记录为准。可用 `./tools/preview.sh settings en` 或 `./tools/preview.sh settings zh-Hans` 打开独立的英文／中文设置预览。
 
 构建与测试细节见[开发说明](docs/DEVELOPMENT.md)；D“错位双轨”与轮廓设计见[品牌设计](docs/BRAND_DESIGN.md)和 [G3 轮廓](docs/G3_CORNERS.md)。
 

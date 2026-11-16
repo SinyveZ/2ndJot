@@ -1134,6 +1134,7 @@ static BOOL YSReducePinMotion(void) {
 @property (nonatomic, strong) NSURL *pendingOpenNoteURL;
 @property (nonatomic, assign) BOOL openingNote;
 @property (nonatomic, strong) NSTimer *draftSaveTimer;
+@property (nonatomic, assign) BOOL editorDraftReadFailed;
 - (void)handleHotkeyPressed;
 - (void)handleHotkeyReleased;
 - (void)showEditor;
@@ -1141,6 +1142,7 @@ static BOOL YSReducePinMotion(void) {
 - (void)languageChanged:(NSPopUpButton *)sender;
 - (void)refreshInterfaceLanguage;
 - (NSString *)effectiveHintText;
+- (NSString *)loadEditorDraft;
 @end
 
 static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event, void *userData) {
@@ -1191,7 +1193,7 @@ static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event,
     }];
     self.stickyNotes = [NSMutableArray array];
     [self loadPreferences];
-    NSString *draft = [NSString stringWithContentsOfURL:EditorDraftURL() encoding:NSUTF8StringEncoding error:nil];
+    NSString *draft = [self loadEditorDraft];
     [self buildMainMenu];
     [self buildPanel];
     // Settings can be the first and only window opened after launch. Keep a
@@ -1312,6 +1314,31 @@ static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event,
         [self saveEditorDraft];
         printf("draftSaved=%d\n", [[NSString stringWithContentsOfURL:EditorDraftURL() encoding:NSUTF8StringEncoding error:nil] isEqualToString:self.textView.string]);
         fflush(stdout);
+        [NSApp terminate:nil];
+    }
+    if ([NSProcessInfo.processInfo.arguments containsObject:@"--draft-failure-check"]) {
+        if (![NSProcessInfo.processInfo.environment[@"YIN_SU_ISOLATED"] boolValue]) exit(EXIT_FAILURE);
+        NSData *original = [NSData dataWithContentsOfURL:EditorDraftURL()];
+        BOOL failed = self.editorDraftReadFailed;
+        [self saveEditorDraft];
+        [self showEditor];
+        [self saveEditorDraft];
+        BOOL protected = failed && self.editorDraftReadFailed && original.length &&
+            [original isEqual:[NSData dataWithContentsOfURL:EditorDraftURL()]];
+        self.textView.string = @"New draft after an unreadable draft";
+        [self saveEditorDraft];
+        BOOL recovered = !self.editorDraftReadFailed &&
+            [[NSString stringWithContentsOfURL:EditorDraftURL() encoding:NSUTF8StringEncoding error:nil]
+                isEqualToString:self.textView.string];
+        BOOL backup = NO;
+        for (NSURL *url in [NSFileManager.defaultManager contentsOfDirectoryAtURL:EditorDraftURL().URLByDeletingLastPathComponent
+                includingPropertiesForKeys:nil options:0 error:nil]) {
+            if ([url.lastPathComponent hasPrefix:@"editor-draft-unreadable-"] &&
+                [original isEqual:[NSData dataWithContentsOfURL:url]]) backup = YES;
+        }
+        printf("unreadableDraftProtected=%d originalDraftBackedUp=%d newDraftSaved=%d\n", protected, backup, recovered);
+        fflush(stdout);
+        if (!(protected && backup && recovered)) exit(EXIT_FAILURE);
         [NSApp terminate:nil];
     }
     if ([[[NSProcessInfo processInfo] arguments] containsObject:@"--confirm-check"]) {
@@ -1661,13 +1688,30 @@ static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event,
         [YSPreferences() synchronize];
         NSUserDefaults *reload = [[NSUserDefaults alloc] initWithSuiteName:YSPreferencesDomain];
         BOOL persisted = [[reload stringForKey:@"uiLanguage"] isEqualToString:YSLanguagePreference()];
+        BOOL retryHint = YES;
+        NSURL *pendingURL = [NSURL fileURLWithPath:@"/private/tmp/YinSu-localization-retry.md"];
+        self.pendingOpenText = body;
+        self.pendingOpenNoteURL = pendingURL;
+        for (NSString *language in @[@"en", @"zh-Hans"]) {
+            YSSetLanguagePreference(language);
+            [self refreshInterfaceLanguage];
+            retryHint = retryHint && [self.statusLabel.stringValue isEqualToString:YSL(@"文件已保存，但未能打开。回车重试，原文仍在。")] &&
+                [self.textView.string isEqualToString:body] && self.pendingOpenNoteURL == pendingURL;
+            self.openingNote = YES;
+            [self refreshInterfaceLanguage];
+            retryHint = retryHint && [self.statusLabel.stringValue isEqualToString:YSL(@"已保存，正在打开 Obsidian…")];
+            self.openingNote = NO;
+        }
+        self.pendingOpenText = nil;
+        self.pendingOpenNoteURL = nil;
+        [self restoreHintText];
         YSSetLanguagePreference(@"system");
         BOOL system = [YSLanguagePreference() isEqualToString:@"system"] &&
             [@[@"en",@"zh-Hans"] containsObject:YSCurrentLanguage()];
-        printf("localizedStrings=%d languageSwitchKeepsContent=%d languageSwitchKeepsSettings=%d localizedLayout=%d localizedDefaultHint=%d languagePreferencePersists=%d systemLanguageFallback=%d\n",
-            strings, content, preserved, layout, defaultsTranslate, persisted, system);
+        printf("localizedStrings=%d languageSwitchKeepsContent=%d languageSwitchKeepsSettings=%d localizedLayout=%d localizedDefaultHint=%d languagePreferencePersists=%d systemLanguageFallback=%d localizedRetryHint=%d\n",
+            strings, content, preserved, layout, defaultsTranslate, persisted, system, retryHint);
         fflush(stdout);
-        if (!(strings && content && preserved && layout && defaultsTranslate && persisted && system)) exit(EXIT_FAILURE);
+        if (!(strings && content && preserved && layout && defaultsTranslate && persisted && system && retryHint)) exit(EXIT_FAILURE);
         [NSApp terminate:nil];
     }
     if ([NSProcessInfo.processInfo.arguments containsObject:@"--brand-check"]) {
@@ -2270,9 +2314,8 @@ static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event,
     YSLog(@"show editor");
     self.isConfirmingClose = NO;
     if (!self.panel.isVisible) {
-        self.textView.string = @"";
-        NSString *draft = [NSString stringWithContentsOfURL:EditorDraftURL() encoding:NSUTF8StringEncoding error:nil];
-        if (draft.length) self.textView.string = draft;
+        NSString *draft = [self loadEditorDraft];
+        if (!self.editorDraftReadFailed) self.textView.string = draft ?: @"";
         [self updatePanelSizeForContent];
         [self positionPanelIfNeeded];
     }
@@ -2292,6 +2335,15 @@ static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event,
     [self updatePanelSizeForContent];
 }
 
+- (NSString *)loadEditorDraft {
+    NSError *error = nil;
+    NSString *draft = [NSString stringWithContentsOfURL:EditorDraftURL() encoding:NSUTF8StringEncoding error:&error];
+    BOOL absent = [error.domain isEqualToString:NSCocoaErrorDomain] && error.code == NSFileReadNoSuchFileError;
+    self.editorDraftReadFailed = !draft && error && !absent;
+    if (self.editorDraftReadFailed) YSLog(@"cannot read editor draft; original will be preserved: %@", error);
+    return draft;
+}
+
 - (void)saveEditorDraft {
     NSString *text = self.pendingOpenText ?: self.textView.string ?: @"";
     if (text.length == 0 && self.pendingOpenNoteURL) return;
@@ -2299,6 +2351,18 @@ static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event,
     NSFileManager *manager = [NSFileManager defaultManager];
     if (![manager createDirectoryAtURL:url.URLByDeletingLastPathComponent withIntermediateDirectories:YES attributes:nil error:nil]) return;
     NSError *error = nil;
+    if (self.editorDraftReadFailed) {
+        // An empty editor does not mean an unreadable file was empty. Before
+        // saving new input, retain that file byte-for-byte in the same folder.
+        if (!text.length) return;
+        NSString *name = [NSString stringWithFormat:@"editor-draft-unreadable-%@.txt", NSUUID.UUID.UUIDString];
+        NSURL *backup = [url.URLByDeletingLastPathComponent URLByAppendingPathComponent:name];
+        if (![manager moveItemAtURL:url toURL:backup error:&error]) {
+            YSLog(@"cannot preserve unreadable editor draft; original left untouched: %@", error);
+            return;
+        }
+        self.editorDraftReadFailed = NO;
+    }
     if (text.length) {
         if (![text writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:&error]) YSLog(@"cannot save editor draft: %@", error);
     } else if ([manager fileExistsAtPath:url.path]) {
@@ -2772,8 +2836,10 @@ static OSStatus YSHotKeyHandler(EventHandlerCallRef nextHandler, EventRef event,
 }
 
 - (void)restoreHintText {
-    self.statusLabel.stringValue = [self effectiveHintText];
-    self.statusLabel.toolTip = [self effectiveHintText];
+    NSString *hint = self.openingNote ? YSL(@"已保存，正在打开 Obsidian…") :
+        self.pendingOpenNoteURL ? YSL(@"文件已保存，但未能打开。回车重试，原文仍在。") : [self effectiveHintText];
+    self.statusLabel.stringValue = hint;
+    self.statusLabel.toolTip = hint;
 }
 
 - (void)updateHintLayout {

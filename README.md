@@ -77,7 +77,7 @@ The app uses Objective-C / AppKit and clang, with no third-party runtime depende
 ./tools/check.sh  # isolated checks; requires a logged-in macOS GUI session
 ```
 
-The check script runs 21 application scenarios in each language, plus localization-resource and two geometry checks. This describes its coverage; completed results are recorded separately. For an isolated English or Chinese settings preview, use `./tools/preview.sh settings en` or `./tools/preview.sh settings zh-Hans`.
+The check script runs 22 application scenarios in each language, plus localization-resource and two geometry checks. This describes its coverage; completed results are recorded separately. For an isolated English or Chinese settings preview, use `./tools/preview.sh settings en` or `./tools/preview.sh settings zh-Hans`.
 
 See [development notes](docs/DEVELOPMENT.md) for build and test details, and the [brand design (Chinese)](docs/BRAND_DESIGN.md) and [G3 profile (Chinese)](docs/G3_CORNERS.md) for the D mark of two offset tracks and the shared corner geometry.
 

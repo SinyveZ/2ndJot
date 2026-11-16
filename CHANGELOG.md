@@ -10,12 +10,14 @@ Private preview; no public release yet. Earlier versions were used locally.
 - Quick capture saves local Markdown to an Obsidian vault or becomes a desktop sticky note. Separate glass settings, shared G3 corners, matching resize arcs, and a stable diagonal resize cursor retain the existing design.
 - Local drafts, save verification, failure recovery, and sticky-note restoration retain the existing storage identity and user settings.
 - Preserve an existing capture draft when the app opens only Settings and then quits without showing the capture panel.
+- Keep unreadable drafts intact; back up the original before saving new input. Language changes retain translated opening and retry prompts.
 
 中文详细记录：
 
 - 新增中英文界面，双语资源各 182 条；默认跟随系统，在“设置 → 通用 → 界面语言”中即时切换，无需重启
 - 切换语言不改正文、自定义提示、快捷键、保存目录和玻璃设置；不修改系统 `AppleLanguages`，系统对话框遵循 macOS 语言
 - 修复仅打开设置、未呼出速记框就退出时可能清空已有草稿的问题；双语检查覆盖后台启动与退出后的草稿保留
+- 草稿读取失败时保留原文件，保存新输入前先备份原稿；切换语言后继续显示对应语言的打开中／回车重试提示
 - 英文品牌统一为 **2ndJot**（读作 Second Jot）；应用包为 `2ndJot.app`，制品名为 `2ndJot-1.6.0-*`，中文名与 D Logo 保持不变
 
 - 快捷输入框右上角新增软盘存盘按钮，与图钉并列；软盘与回车共用 Markdown 保存和失败重试流程

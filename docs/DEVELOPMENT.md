@@ -11,7 +11,7 @@
 ./tools/preview.sh settings zh-Hans
 ```
 
-The check script covers 21 app scenarios per language (42 total), localization resources, and two independent geometry checks. CI performs a smaller build and bilingual save smoke check. Coverage is not a passing result: see [VERIFICATION.md](launch/VERIFICATION.md) for actual runs. Local development uses Apple Silicon, macOS 27.2.1, and SDK 27.2; do not infer SDK 26 or other-machine compatibility from that environment.
+The check script covers 22 app scenarios per language (44 total), localization resources, and two independent geometry checks. CI performs a smaller build and bilingual save smoke check. Coverage is not a passing result: see [VERIFICATION.md](launch/VERIFICATION.md) for actual runs. Local development uses Apple Silicon, macOS 27.2.1, and SDK 27.2; do not infer SDK 26 or other-machine compatibility from that environment.
 
 App-owned text switches immediately through **Settings → General → App language**. The selection is saved as `uiLanguage`; it does not modify system `AppleLanguages`. Native macOS dialogs keep the macOS language, and existing data and folder names remain unchanged.
 
@@ -35,9 +35,11 @@ App-owned text switches immediately through **Settings → General → App langu
 
 ## 隔离自检
 
-先构建，再运行 `./tools/check.sh`。需已登录的 macOS 图形会话。脚本先运行 G3、缩放弧线两组几何与本地化资源检查，再复制独立 bundle id 的临时应用；中英文各运行 21 个应用场景，共 42 个。假库、便签和草稿放在 `/private/tmp/YinSu-check.*` 的分语言目录，关闭剪贴板写入与 Obsidian 打开。`YIN_SU_ISOLATED=1` 使用每次运行独立的设置域，跳过旧设置迁移、全局快捷键注册和设置窗口位置保存。
+先构建，再运行 `./tools/check.sh`。需已登录的 macOS 图形会话。脚本先运行 G3、缩放弧线两组几何与本地化资源检查，再复制独立 bundle id 的临时应用；中英文各运行 22 个应用场景，共 44 个。假库、便签和草稿放在 `/private/tmp/YinSu-check.*` 的分语言目录，关闭剪贴板写入与 Obsidian 打开。`YIN_SU_ISOLATED=1` 使用每次运行独立的设置域，跳过旧设置迁移、全局快捷键注册和设置窗口位置保存。
 
 测试保留临时目录供排查，不读写真实库。独立设置域名称为 `com.sinyve.YinSu.preview.<UUID>`，可能由系统保存在用户 Preferences 目录；不会覆盖 `com.sinyve.YinSu`。请勿在正式日常启动时设置这些变量。
+
+`--draft-failure-check` 还检查无法解码的旧草稿不会被空编辑器删除。若读取失败后保存新输入，原文件先保留为同目录的 `editor-draft-unreadable-<UUID>.txt`；备份失败则不覆盖原文件。`--localization-check` 同时确认待打开／重试提示随语言更新。
 
 内置检查：`--corner-check`、`--resize-check`、`--localization-check`、`--preview-isolation-check`、`--self-test`、`--settings-check`、`--layout-check`、`--ui-check --commit-check`、`--toggle-check`、`--open-failure-check`、`--confirm-check`、`--sticky-check`、`--sticky-restore-check`、`--draft-save-check`、`--draft-check`、`--pin-check`、`--glass-preferences-check`、`--glass-check`、`--save-button-check`、`--brand-check`。`--pin-check` 的减少动态效果变体另占一个场景。
 

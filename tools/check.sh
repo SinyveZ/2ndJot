@@ -36,10 +36,11 @@ checks = [
     (['--save-button-check'], ['saveButtonWrites=1 pinDoesNotWriteMarkdown=1 stickyCloseAsks=1 stickyCloseSaves=1 saveButtonRetryNoDuplicate=1']),
     (['--brand-check'], ['quickBrand=1 menuBrand=1 appIconBundled=1 stickyPinReplacesLogo=1 curvedResizeHandle=1 appNameUnified=1 legacyIdentityKept=1']),
     (['--corner-check'], ['g3QuickMask=1 g3QuickResize=1 g3StickyMask=1 g3StickyResize=1 g3StickyPortrait=1 g3SingleMaterialOutline=1 g3DragTarget=1 noWindowShadow=1']),
-    (['--localization-check'], ['localizedStrings=1 languageSwitchKeepsContent=1 languageSwitchKeepsSettings=1 localizedLayout=1 localizedDefaultHint=1 languagePreferencePersists=1 systemLanguageFallback=1']),
+    (['--localization-check'], ['localizedStrings=1 languageSwitchKeepsContent=1 languageSwitchKeepsSettings=1 localizedLayout=1 localizedDefaultHint=1 languagePreferencePersists=1 systemLanguageFallback=1 localizedRetryHint=1']),
     (['--resize-check'], ['resizeCursorDiagonal=1 resizeCursorHeld=1 resizeCursorReleased=1 resizeDragAnchored=1 resizeDragClamped=1 resizeCancelCleanup=1 resizeDetachCleanup=1 resizeDisabledStateKept=1']),
     (['--draft-save-check'], ['draftSaved=1']),
     (['--draft-check'], ['draftRestored=1']),
+    (['--draft-failure-check'], ['unreadableDraftProtected=1 originalDraftBackedUp=1 newDraftSaved=1']),
 ]
 failures = []
 for language in ("zh-Hans", "en"):
@@ -54,12 +55,14 @@ for language in ("zh-Hans", "en"):
             for key in ('YIN_SU_ISOLATED', 'VOICE_NOTE_FOLDER_PATH', 'YIN_SU_STICKY_STORE',
                         'YIN_SU_EDITOR_DRAFT', 'VOICE_NOTE_NO_OPEN', 'VOICE_NOTE_NO_CLIPBOARD'):
                 environment.pop(key, None)
-        if flags[0] in {'--glass-check', '--pin-check', '--save-button-check', '--brand-check', '--corner-check', '--resize-check', '--localization-check'}:
+        if flags[0] in {'--glass-check', '--pin-check', '--save-button-check', '--brand-check', '--corner-check', '--resize-check', '--localization-check', '--draft-failure-check'}:
             case_dir = Path(tempfile.mkdtemp(prefix='case-', dir=language_folder))
             (case_dir / 'Vault' / '.obsidian').mkdir(parents=True)
             environment.update(VOICE_NOTE_FOLDER_PATH=str(case_dir / 'Vault' / 'Notes'),
                                YIN_SU_STICKY_STORE=str(case_dir / 'stickies.plist'),
                                YIN_SU_EDITOR_DRAFT=str(case_dir / 'editor-draft.txt'))
+            if flags[0] == '--draft-failure-check':
+                (case_dir / 'editor-draft.txt').write_bytes(b'\xff\xfeUnreadable UTF-8 draft\x00')
         if "--reduce-pin-motion" in flags: environment["YIN_SU_REDUCE_MOTION"] = "1"
         result = subprocess.run([app, *flags], text=True, capture_output=True, timeout=25, env=environment)
         output = result.stdout
