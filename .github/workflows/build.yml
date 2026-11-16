@@ -1,0 +1,57 @@
+name: Build and bilingual smoke check
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: SDK and host
+        run: |
+          sw_vers
+          xcrun --show-sdk-version
+          xcodebuild -showsdks
+          uname -m
+      - name: Verify English and Chinese localization resources
+        run: python3 ./tools/check-localization.py
+      - name: Build
+        run: ./build.sh
+      - name: Verify signed bilingual app bundle
+        shell: bash
+        run: |
+          app_dir=/private/tmp/YinSu-build/2ndJot.app
+          codesign --verify --deep --strict "$app_dir"
+          cmp LICENSE "$app_dir/Contents/Resources/LICENSE"
+          for language in en zh-Hans; do
+            for table in Localizable InfoPlist; do
+              cmp "src/Resources/$language.lproj/$table.strings" \
+                "$app_dir/Contents/Resources/$language.lproj/$table.strings"
+            done
+          done
+      - name: Verify continuous corner geometry
+        run: ./tools/check-g3.sh
+      - name: Verify inset resize arcs
+        run: ./tools/check-resize-arcs.sh
+      - name: Save a note in each language using disposable vaults
+        shell: bash
+        run: |
+          test_dir="$(mktemp -d)"
+          trap 'rm -rf "$test_dir"' EXIT
+          for language in en zh-Hans; do
+            case_dir="$test_dir/$language"
+            mkdir -p "$case_dir/Vault/.obsidian"
+            YIN_SU_ISOLATED=1 YIN_SU_UI_LANGUAGE="$language" \
+              VOICE_NOTE_FOLDER_PATH="$case_dir/Vault/Notes" \
+              YIN_SU_STICKY_STORE="$case_dir/stickies.plist" \
+              YIN_SU_EDITOR_DRAFT="$case_dir/editor-draft.txt" \
+              VOICE_NOTE_NO_OPEN=1 VOICE_NOTE_NO_CLIPBOARD=1 \
+              /private/tmp/YinSu-build/2ndJot.app/Contents/MacOS/YinSu --self-test
+            test -n "$(find "$case_dir/Vault/Notes" -name '*.md' -print -quit)"
+          done

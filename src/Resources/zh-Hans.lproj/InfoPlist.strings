@@ -1,0 +1,3 @@
+/* 本地化应用名称；不更改存储路径或应用标识。 */
+"CFBundleDisplayName" = "双轨记";
+"CFBundleName" = "双轨记";

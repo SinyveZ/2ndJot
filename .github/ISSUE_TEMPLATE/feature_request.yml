@@ -1,0 +1,21 @@
+name: 使用建议 / Feature request
+description: 告诉我们哪一步不顺手 / Describe friction in your workflow
+title: "[Idea] "
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: 使用场景 / Context
+      description: 使用双轨记时，你当时想完成什么？What were you trying to do with 2ndJot?
+    validations:
+      required: true
+  - type: textarea
+    id: friction
+    attributes:
+      label: 哪一步不顺手？ / What gets in the way?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 你的想法 / Suggested improvement

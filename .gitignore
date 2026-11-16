@@ -1,0 +1,6 @@
+.DS_Store
+build/
+dist/*.zip
+dist/*-SHA256SUMS.txt
+.launch-work/
+*.log

@@ -1,0 +1,3 @@
+/* Localized application names; storage and bundle identity stay unchanged. */
+"CFBundleDisplayName" = "2ndJot";
+"CFBundleName" = "2ndJot";

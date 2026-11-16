@@ -1,0 +1,32 @@
+name: 问题反馈 / Bug report
+description: 描述可以复现的问题 / Report a reproducible problem
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: 请勿提交真实笔记、私人路径或凭据。Please redact private data.
+  - type: input
+    id: environment
+    attributes:
+      label: 环境 / Environment
+      description: 2ndJot version/build, macOS version, and Apple Silicon or Intel. / 版本、系统和芯片。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 预期与实际结果 / Expected and actual behavior
+      description: 保存问题请说明文件是否生成、Obsidian 是否打开。For save issues, did the file appear and did Obsidian open?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 可选截图或日志 / Optional screenshots or logs
+      description: 分享前去除笔记正文、用户名与私人路径。Redact notes, usernames, and private paths.
