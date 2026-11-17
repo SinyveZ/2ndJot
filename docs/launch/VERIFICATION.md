@@ -26,6 +26,18 @@
 
 ## GitHub 与验证边界
 
-私有仓库 [SinyveZ/2ndJot](https://github.com/SinyveZ/2ndJot) 已创建，并通过 GitHub API 确认可见性为 private。已完成官方 `workflow` 补充授权，将白名单源码推送至 `main` 并运行 CI；结果待实际运行确认。此阶段不创建公开 Release。远端主机／SDK／运行结果以 Actions 的实际日志为准；本记录不会把本地通过写成远端通过。
+私有仓库 [SinyveZ/2ndJot](https://github.com/SinyveZ/2ndJot) 已推送白名单源码，并通过 GitHub API 确认可见性为 private。未建立公开 Release。
+
+2026-11-17，[GitHub Actions 第一次运行](https://github.com/SinyveZ/2ndJot/actions/runs/44022113186) **通过**，对应源码提交 [`8823915`](https://github.com/SinyveZ/2ndJot/commit/8823915941ec3a7f5c48bb0633c22cd7a170a027)。实际日志确认：
+
+| 项目 | 实际结果 |
+| --- | --- |
+| 云端环境 | `macos-26`；macOS 26.7.2；macOS SDK 26.5；arm64 |
+| 本地化资源 | 中英文各 182 条资源、两种应用名称，键／值／格式参数检查通过 |
+| 构建与签名 | clang 构建成功；严格签名验证通过；MIT 与两套语言资源和源码逐文件一致 |
+| 几何 | G3 连续曲率与内缩缩放短弧两组检查通过 |
+| 双语保存 | en 显示 2ndJot、zh-Hans 显示双轨记；两种语言均在各自临时库成功写入 Markdown |
+
+**English summary:** All 44 local application scenarios passed across English and Simplified Chinese. The linked GitHub Actions run also passed on macOS 26.7.2 / SDK 26.5 / arm64: build, signature and bundled resources, both geometry checks, and one isolated Markdown save per language. Full GUI interactions and live language switching were tested locally, rather than in CI. The repository remains private, with no public Release.
 
 另一台 Mac 从实际下载开始的首次安装尚未验证，当前 ad-hoc 包不能声称默认通过 Gatekeeper。Intel、macOS 13–26 的实际 GUI、输入法真实语音／组合输入及长期使用仍需实机验证。所有自动写入检查均使用隔离临时库，不操作真实笔记或输入法配置。
