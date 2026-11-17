@@ -26,6 +26,6 @@
 
 ## GitHub 与验证边界
 
-私有仓库 [SinyveZ/2ndJot](https://github.com/SinyveZ/2ndJot) 已创建，并通过 GitHub API 确认可见性为 private。此阶段不创建公开 Release。首次推送因现有 OAuth 令牌缺少 `workflow` 权限被 GitHub 拒绝，正在等待用户完成官方补充授权；CI 尚未运行。远端主机／SDK／运行结果以 Actions 的实际日志为准；本记录不会把本地通过写成远端通过。
+私有仓库 [SinyveZ/2ndJot](https://github.com/SinyveZ/2ndJot) 已创建，并通过 GitHub API 确认可见性为 private。已完成官方 `workflow` 补充授权，将白名单源码推送至 `main` 并运行 CI；结果待实际运行确认。此阶段不创建公开 Release。远端主机／SDK／运行结果以 Actions 的实际日志为准；本记录不会把本地通过写成远端通过。
 
 另一台 Mac 从实际下载开始的首次安装尚未验证，当前 ad-hoc 包不能声称默认通过 Gatekeeper。Intel、macOS 13–26 的实际 GUI、输入法真实语音／组合输入及长期使用仍需实机验证。所有自动写入检查均使用隔离临时库，不操作真实笔记或输入法配置。
