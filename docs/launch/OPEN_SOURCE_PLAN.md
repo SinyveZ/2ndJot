@@ -6,7 +6,7 @@
 
 英文 **2ndJot**（读作 Second Jot），中文“双轨记”，D“错位双轨”Logo 不变。应用支持 English 与简体中文，默认跟随系统；在“设置 → 通用 → 界面语言”（Settings → General → App language）中即时切换，无需重启，不改正文、自定义提示、快捷键、保存目录或玻璃设置。系统对话框遵循 macOS 语言。
 
-英文默认 README、中文 README、双语 Release 审阅稿、英文传播包、小红书首篇及六图编排、MIT、贡献和安全说明、Issue 模板与 CI 配置均纳入准备。应用与源码附件统一为 `2ndJot-1.6.0-*`；打包和材料准备不代表已公开。
+仓库首页为中文在前的双语 README，并保留中文单页。双语 Release、英文传播包与小红书首篇六图见[首发审阅](LAUNCH_REVIEW.md)。应用与源码附件统一为 `2ndJot-1.6.0-*`，当前为私有预览。
 
 ## 当前阶段的顺序
 
@@ -22,7 +22,7 @@
 1. **另一台 Mac 从下载开始试装。** 核对系统提示、首次打开、选库、第一条 Markdown、便签创建／缩放／关闭另存与重启恢复，并检查中英文。当前跨机首次下载未验证；Intel、较早系统继续如实标明范围。
 2. **复核公开材料与制品。** 入口为 [LAUNCH_REVIEW.md](LAUNCH_REVIEW.md)。核对最终 build、双语截图、README、Release、英文传播稿和小红书首篇；重新导出源码、检查许可及敏感信息、生成校验值。
 3. **确认后公开仓库与 Release。** 只有取得公开授权后才改变可见性。拟用 `v1.6.0` 标签，首轮可作为 Pre-release；上传应用 ZIP、源码 ZIP 和 SHA-256，检查 About／Topics／Social preview 与反馈入口。用真实下载说明替换 README 私有预览提示。
-4. **下载可用后再宣传。** 中文用 [小红书首篇](XIAOHONGSHU.md)，英文用 [INTERNATIONAL.md](INTERNATIONAL.md)。先独立验证公开图片、源码、安装包与校验值均可访问，再发送带“开源了”口吻的文字。
+4. **下载可用后宣传。** 确认公开图片、源码、安装包与校验文件均可访问，再发[小红书首篇](XIAOHONGSHU.md)。首轮 V2EX 和 Obsidian 论坛的切入点及后续渠道见[社区发布](LAUNCH_REVIEW.md#社区发布)。
 
 当前为 ad-hoc 签名，没有 Developer ID 和 Apple 公证。给非技术用户分享前应让校验与首次打开说明可操作；Developer ID／公证是降低安装阻力的后续路线，不把现有包写成已获 Apple 公证。最低部署目标 macOS 13 也不等于全系统认证。
 

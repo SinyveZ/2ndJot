@@ -16,61 +16,56 @@ A native macOS menu bar app for quick capture to local Markdown in Obsidian or d
 
 ## 3. Launch introduction
 
-建议标题：**2ndJot — Stay on track. Jot it down.**
+建议标题可用 **2ndJot · Stay on track. Jot it down.**
 
 <!-- LAUNCH_INTRO_START -->
 
-I built 2ndJot (pronounced “Second Jot”; 中文名：双轨记) for a familiar interruption: an idea arrives while I’m working on something else. I want to keep it without turning it into my next task.
+I built 2ndJot (pronounced “Second Jot,” 双轨记 in Chinese) for the ideas I get while vibe coding with AI. My AI coding tool (the harness) can still be running the current task when I think of a change for the next round or a different direction to explore. I can’t always send those ideas right away. The tool may still be busy, I may need to watch my usage limits, or I may only be able to focus on one task at a time.
 
-A configurable shortcut opens a small capture panel. Press Return to save a local Markdown file in your Obsidian vault, or pin a desktop sticky note. The idea has somewhere to go; I can return to what I was doing.
+While the task keeps running, I hit a shortcut and jot down the thought. I press Return or click the floppy disk icon to save it as a separate local Markdown file in my Obsidian vault, or click the pin to leave a desktop sticky note. I can sort through the ideas or send them to AI later. The Chinese name refers to those two tracks. One is the work underway. The other is for the ideas I’m saving for later.
 
-This is my first public open source release, version 1.6.0 (build 18), under MIT. The UI supports English and Simplified Chinese, with an instant language switch in Settings. There’s no built-in account or analytics upload. Dictation comes from your input method.
+This is my first public release, **1.6.0**, under the MIT license. The interface follows your system language by default, and you can switch between English and Simplified Chinese without restarting in **Settings → General → App language**.
 
-The app download is Apple Silicon only. Local development uses macOS 27.2.1; other-machine installation remains unverified. The app is ad-hoc signed without Apple notarization. I’d welcome feedback on installation, the first capture, and sticky notes.
+To try it on an **Apple Silicon Mac**, check the app ZIP against the published SHA-256 checksum, unzip it, and move `2ndJot.app` into Applications. For Markdown saves, choose a local Obsidian vault or a folder inside it in **Settings → General → Save Location**. Open Quick Capture with the default **Control + Shift + Space** shortcut. Desktop sticky notes work independently of Obsidian. The app is ad-hoc signed and hasn’t been notarized by Apple. I’d welcome feedback on setup and quick capture.
 
-[Source, setup, and release notes](https://github.com/SinyveZ/2ndJot)
+[Download and release notes](https://github.com/SinyveZ/2ndJot/releases/tag/v1.6.0) · [Source and setup](https://github.com/SinyveZ/2ndJot)
 
 <!-- LAUNCH_INTRO_END -->
 
-## 4. Obsidian community introduction
+## 4. Obsidian Workflows & Templates
 
-建议标题：**2ndJot: capture a passing thought into your Obsidian vault**
+确认公开发布且可以下载后，可在论坛分享这套工作流。[Obsidian Forum · Workflows & Templates](https://forum.obsidian.md/c/share-showcase/workflows-templates/23)
+
+建议标题可用 **Quick capture to an Obsidian vault with 2ndJot**
 
 <!-- OBSIDIAN_INTRO_START -->
 
-I made 2ndJot (双轨记), a macOS menu bar app, to capture ideas while keeping my current work in view. A shortcut opens a panel; Return saves a local Markdown file in an Obsidian vault. Opening Obsidian after saving is optional. You can also pin a desktop sticky and return to it later.
+I use 2ndJot (双轨记), a standalone Mac menu bar app, to capture ideas while my AI coding tool is still on a task.
 
-This is a standalone app. The folder picker requires a vault with a `.obsidian` directory; sticky notes work independently. Version 1.6.0 (build 18) is under MIT, with English and Simplified Chinese UI. Downloads are Apple Silicon only; local development uses macOS 27.2.1. The app is ad-hoc signed and not notarized. Please read the installation and verification notes before trying it.
+1. In 2ndJot, choose your local Obsidian vault or a folder inside it in **Settings → General → Save Location**.
+2. Press the default **Control + Shift + Space** shortcut and jot down the idea. Return or the floppy disk icon saves each capture as its own `.md` file in the selected location. Click the pin to keep it as a desktop sticky. You can keep multiple sticky notes open at once. Their text, position, size, and window level are restored when you reopen the app.
+3. Press **Command + Return** in a sticky if you want a Markdown copy in the vault. Review or organize the saved notes in Obsidian later, then decide which, if any, to send to AI.
 
-[Source and setup](https://github.com/SinyveZ/2ndJot)
+Version 1.6.0 is MIT-licensed and supports English and Simplified Chinese. The Apple Silicon download is ad-hoc signed and hasn’t been notarized by Apple.
+
+[Download and release notes](https://github.com/SinyveZ/2ndJot/releases/tag/v1.6.0) · [Source and setup](https://github.com/SinyveZ/2ndJot)
 
 <!-- OBSIDIAN_INTRO_END -->
 
-## 5. macOS community introduction
+## 5. r/macapps
 
-建议标题：**2ndJot: a menu bar home for thoughts you’ll return to later**
+Phase 4 将笔记和待办列为饱和类目。该类应用进入主版须已上架 Mac App Store、已取得版主审核发放的 Developer Flair（申请需至少 500 本版 karma），或入选当月 The App Pile 前三。主版的一般门槛为账号至少满 60 天、拥有至少 200 Reddit karma，帖子带价格 flair 和 PCP + Trust。[r/macapps Phase 4 规则](https://www.reddit.com/r/macapps/comments/1xo5ky1/rmacapps_moderation_update_phase_4_clearer_rules/)
 
-<!-- MACOS_INTRO_START -->
+将来公开且可试用后，如选择在 r/macapps 自荐，建议先用当月 **The App Pile**。这是每月自荐串，每位开发者每月可提交一次，按 PCP 格式准备。[The App Pile · 2026 年 11 月](https://www.reddit.com/r/macapps/comments/1xks9uj/megathread_the_app_pile_november_2026/)
 
-I built 2ndJot (双轨记) for thoughts that arrive in the middle of another task. Open its capture panel with a shortcut, write the thought, then save local Markdown in an Obsidian vault or pin a desktop sticky.
+- **Problem** 用一句话写清 2ndJot 解决的具体问题。
+- **Comparison** 指名两款主流的非 Apple 同类应用，实测后再写各自的功能差异，包括 2ndJot 做得更好的地方和对方仍有优势的地方。
+- **Pricing** 写明实际价格和所有档位，附官方应用页面链接。下载从该页面进入。
 
-Sticky notes restore on relaunch and work without Obsidian. Capture and sticky notes have separate glass settings. The UI supports English and Simplified Chinese, with instant switching and no restart.
+## 6. Show HN prerequisites
 
-Version 1.6.0 (build 18) is under MIT. The app download is Apple Silicon only; local development uses macOS 27.2.1. It is ad-hoc signed without Apple notarization, and installation from a fresh download on another Mac remains unverified. I’d appreciate feedback on the everyday capture flow.
-
-[Source and setup](https://github.com/SinyveZ/2ndJot)
-
-<!-- MACOS_INTRO_END -->
-
-## 6. Optional HN title drafts
-
-仅为备选标题；公开前查看所选社区当时的规则，确认适合的介绍方式，不在私有预览阶段发帖。
-
-- `Show HN: 2ndJot – Capture a thought and return to your work`
-- `Show HN: 2ndJot – macOS quick capture to Markdown or desktop stickies`
-- `Show HN: 2ndJot – A place for ideas that can wait`
-
-正文可从首发介绍缩短，保留作者身份、双语支持、Apple Silicon 范围、签名状态和真实可访问的使用入口。
+1. **作者亲写。** 标题、正文和后续评论由作者亲写，作者本人参与讨论。HN 的提交规则排除生成文本，评论规则也明确排除生成或 AI 改写的文字。[Hacker News Guidelines](https://news.ycombinator.com/newsguidelines.html)
+2. **公开可试用。** 确认公开发布后，读者能从公开入口下载 Apple Silicon 版本，并按安装说明实际试用。[Show HN Guidelines](https://news.ycombinator.com/showhn.html)
 
 ## 7. English FAQ
 
@@ -144,8 +139,8 @@ Preview testers with repository access can use [Issues](https://github.com/Sinyv
 
 ## 8. 公开前核对
 
-统一英文 2ndJot、中文“双轨记”、build 18、D Logo 和制品名；主页为英文 `README.md`，中文为 `README.zh-CN.md`。应用支持双语，即时切换保留正文及偏好；AppKit 系统对话框仍遵循 macOS。
+核对品牌名称、build 18、双语截图与制品名。仓库首页先中文后英文，开头可跳到英文部分，中文也有单页。
 
 首发／社区正文采用公开后的口吻，私有阶段不发送。正式公开前核对双语实机截图、实际测试／CI 结果、跨机安装状态、签名与所有下载链接；有变化就更新正文，不沿用过期验证结论。
 
-事实依据：[English README](../../README.md)、[中文 README](../../README.zh-CN.md)、[Release 审阅稿](RELEASE_v1.6.0.md)、[验证记录](VERIFICATION.md)、[MIT](../../LICENSE)。
+审阅时可对照 [English README](../../README.md#english) · [中文 README](../../README.zh-CN.md) · [Release 审阅稿](RELEASE_v1.6.0.md) · [验证记录](VERIFICATION.md) · [MIT](../../LICENSE)。

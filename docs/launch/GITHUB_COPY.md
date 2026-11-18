@@ -14,11 +14,11 @@ Topics：`macos` · `obsidian` · `markdown` · `menubar` · `note-taking` · `s
 
 Social preview：[github-social-preview.png](../media/github-social-preview.png)，1280×640 PNG，小于 1 MB。公开前核对图片中的名称和网址。它是分享仓库链接时的预览图；README 的图片不自动替代此设置。
 
-默认主页：[English README](../../README.md)；中文入口：[README.zh-CN.md](../../README.zh-CN.md)。中英文实机图分别使用 [workflow-preview.en.png](../media/workflow-preview.en.png) 和 [workflow-preview.png](../media/workflow-preview.png)，最终配图核对 build 18 与界面语言。
+仓库首页为[双语 README](../../README.md)，中文在前，分割线后为[英文](../../README.md#english)。另有[中文单页](../../README.zh-CN.md)。中英文实机图分别使用 [workflow-preview.png](../media/workflow-preview.png) 和 [workflow-preview.en.png](../media/workflow-preview.en.png)。
 
 ## 将来的首个 Release
 
-标题：`2ndJot 1.6.0 · Stay on track. Jot it down. / 双轨记`
+标题：`双轨记 · 2ndJot 1.6.0`
 
 预期标签：`v1.6.0`，指向检查过的发布提交。首轮可标为 Pre-release，收集安装和兼容反馈。当前候选为 1.6.0（build 18），支持 English 与简体中文。
 

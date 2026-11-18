@@ -1,59 +1,40 @@
-# 2ndJot · 双轨记公开前审阅
+# 双轨记 · 2ndJot 首发审阅
 
-日期：2026-11-17。候选版本：1.6.0（build 18）。许可证：MIT。
+2026-11-18 · 1.6.0（build 18）私有预览 · MIT
 
-**当前为私有预览：完成双语验证、私有仓库 CI 与本地体验后，再讨论公开。** 英文名为 **2ndJot**（读作 Second Jot），中文名与 D Logo 不变。目标仓库 `SinyveZ/2ndJot` 保持私有，不在本阶段发布公开 Release 或宣传帖。
+这次首发讲的是我在用 AI 做 vibe coding 时遇到的问题。工具还在跑当前任务，脑子已经想到下一步或另一个方向。额度和注意力都有边界，先按快捷键把想法放到本地，再决定什么时候整理或发给 AI。
 
-## 审阅材料
-
-| 材料 | 审阅重点 |
+| 审阅材料 | 看什么 |
 | --- | --- |
-| [English README](../../README.md) / [中文 README](../../README.zh-CN.md) | 用途、两种去向、语言选择与当前私有体验方式 |
-| [双语首发说明](RELEASE_v1.6.0.md) | 将来公开使用的正文、附件、签名与支持范围 |
-| [小红书首篇正文与六图](XIAOHONGSHU.md) | 公开后使用的第一人称文案、真实窗口与下载指引 |
-| [GitHub 页面文案](GITHUB_COPY.md) | 简介、Topics、Social preview、中英文反馈入口 |
-| [英文传播包](INTERNATIONAL.md) | 英文首发帖、社区介绍与 FAQ |
-| [验证记录](VERIFICATION.md) | 实际本地／云端运行与未覆盖范围；不以本文代替结果 |
+| [双语 README](../../README.md) · [中文单页](../../README.zh-CN.md) · [英文部分](../../README.md#english) | 中文在前，英文完整对应。功能表和上手步骤都写明多张便签可以同时存在。 |
+| [中英文 Release](RELEASE_v1.6.0.md) | 第一人称缘起、两种去向、安装和附件说明。 |
+| [小红书首篇](XIAOHONGSHU.md) · [六图总览](../media/contact-sheet.png) | 首发正文、六图顺序和公开后两周的更新节奏。 |
+| [GitHub 页面](GITHUB_COPY.md) · [英文社区稿](INTERNATIONAL.md) | 仓库简介和不同读者关心的试用信息。 |
+| [验证记录](VERIFICATION.md) | 版本、平台、构建、测试与目前覆盖范围。 |
 
-![六张首发图编排预览](../media/contact-sheet.png)
+![小红书首图](../media/xhs-01.png)
 
-## build 18 的文档基线
+## 社区发布
 
-| 项目 | 约定与核对范围 |
+GitHub 是项目的长期入口。README 讲清怎么用，Releases 让人下载，Issues 收集能复现的问题。首批读者通常从相关社区过来。找已经有这种工作流的人，展示一段他们能照着试的操作。 [Open Source Guides：如何找到使用者](https://opensource.guide/finding-users/)
+
+| 渠道 | 2ndJot 适合怎么发 |
 | --- | --- |
-| 品牌与文件名 | `2ndJot.app`；`2ndJot-1.6.0-{arm64,source}.zip`；源码根 `2ndJot-source` |
-| 双语界面 | 中英文各 182 条资源，默认跟随系统；General → App language 即时切换 |
-| 切换保留 | 正文、自定义提示、快捷键、库路径和两组玻璃设置；不写系统 `AppleLanguages` |
-| 本地检查设计 | 22 个场景 × 中英文，共 44 个；另有资源与两组几何检查，实际结果读验证记录 |
-| CI 检查设计 | 构建、签名与打包资源、两组几何、中英文假库保存；与完整 GUI 检查分开记录 |
-| MIT 与归档 | 许可随应用资源打包；ZIP 保留 UTF-8 文件名和可执行权限；公开前再核对最终制品 |
-| 安装说明 | SHA-256、ad-hoc／未公证说明、Obsidian 库要求、当前共享包或源码入口 |
-| 配图 | 最终核对为 build 18 的中英文窗口；历史批准板只作参考，不能冒充当前品牌或截图 |
+| **V2EX「分享创造」** · 中文技术用户 | 中文第一站。讲一次 AI 仍在执行而思路先往前走的经历，贴一张真实窗口和仓库链接，问愿意试的人先卡在哪一步。这个节点供作者展示自己的作品。可参考同类 Mac 工具作者如何描述自己的需求。 [节点](https://www.v2ex.com/go/create) · [Knot 的分享帖](https://global.v2ex.com/t/1242540) |
+| **Obsidian Forum → Share & Showcase → Workflows & Templates** · 现有 Obsidian 用户 | 英文首轮。用三步展示「快捷键 → 输入 → 库内生成独立 .md」，再说明便签也可单独留在桌面。注明是独立的 macOS 应用，可同时留多张便签。分享后参与讨论，这里已有同类工具帖。 [板块](https://forum.obsidian.md/c/share-showcase/workflows-templates/23) · [社区准则](https://obsidian.md/help/community-code-of-conduct) · [同类发布帖](https://forum.obsidian.md/t/mac-desktop-stickies-for-obsidian/108168) |
+| **Hacker News → Show HN** · 开发者和产品作者 | 等别人能直接下载试用，再由作者亲写自己为什么做、怎样试，留时间回答读者。站方要求可以操作的个人项目，帖子和评论请自己写，不使用 AI 生成文案，也不组织投票。 [Show HN 规则](https://news.ycombinator.com/showhn.html) · [HN 发帖规则](https://news.ycombinator.com/newsguidelines.html) |
+| **Reddit → r/macapps 的 The App Pile** · Mac 应用使用者 | 先看当月置顶串。笔记类主版有账号和信任门槛，例如 Mac App Store、经审核的开发者标识或月串前三。开源仓库本身不构成此类主版的准入资格。月串按 Problem、Comparison、Pricing 写，比较两款实际用过的非 Apple 同类工具，注明免费与 MIT，链接给项目介绍页。 [版主规则](https://www.reddit.com/r/macapps/comments/1xo5ky1/rmacapps_moderation_update_phase_4_clearer_rules/) · [月串样例](https://www.reddit.com/r/macapps/comments/1xks9uj/megathread_the_app_pile_november_2026/) |
+| **Product Hunt** · 偏广的产品尝鲜用户 | 可做第二波。在安装和演示稳定之后，用个人账号填写产品链接、短介绍、Logo 和图组。平台允许作者自己提交产品。 [官方上架说明](https://help.producthunt.com/en/articles/17734646-8-launch-faq-and-myths) |
 
-兼容标识 `com.sinyve.YinSu`、`YinSu` 可执行文件及原本机目录继续保留，真实笔记不移动、不改名。公开源码采用白名单导出，不携带本机旧 Git 历史、旧 dist 或私人数据；最终导出后重新检查。
+## 建议顺序
 
-## 公开前的检查点
+1. **公开日**，检查外部访客能打开仓库、下载应用和找到首次打开说明，再发小红书首篇。
+2. **第 1～3 天**，在 V2EX 发中文作者帖，在 Obsidian 论坛发一条英文工作流帖。两边重点分别是 AI 思路暂存和 Markdown 进库，错开发便于跟回复。
+3. **第 3～5 天**，把真实反馈最多的那一步做成小红书短演示。已有顺利试装和首次保存的反馈，再考虑 Show HN。
+4. **第 10～14 天**，有重复提问或真实修复时再跟进。按届时的月串规则决定是否在 r/macapps 分享。Product Hunt 可以等使用演示更完整后再考虑。
 
-1. **私有库真实 CI 结果。** 从验证记录读取对应提交、运行链接和 SDK，不用本地构建或工作流配置代替远端成功。当前本地环境为 Apple Silicon / macOS 27.2.1 / SDK 27.2。
-2. **双语实际窗口。** 检查中英文设置、菜单、提示、错误、窄窗口和较长文字；确认切换即时生效且不改已有内容。系统对话框按 macOS 语言显示，不作为应用漏译。
-3. **另一台 Mac 首次下载试装。** 当前 ad-hoc、未公证；从下载开始验证系统提示、手动打开、选库、首条保存和便签恢复。跨机首次安装尚未验证，不能宣称已通过。
-4. **独立的公开确认。** 当前授权止于私有预览。确认公开后才改变可见性、建立标签及 Release；再核对图片、三个附件、校验值和反馈入口，替换 README 的私有预览提示。
+第一轮先看人能否装好、存下一条 Markdown、同时保留两张便签。发现问题就补 README 或修应用。Stars 和下载次数可以作为参考，反馈要具体到用户在哪一步停住。
 
-Developer ID 与 Apple 公证尚未具备；Intel、其他 macOS 实机和自动更新未列为已完成能力。最低 target 13 是构建配置，不是完整兼容认证。所有最终通过／失败结论由 [VERIFICATION.md](VERIFICATION.md) 记录。
+## 公开前核对
 
-## 公开后如何介绍项目
-
-先让 GitHub 页面讲清用途、安装和反馈，再到需要它的社区介绍。Topics 和分享封面可以帮助别人辨认项目，不能保证曝光。参考 [GitHub Topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics)、[Social preview](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview) 及 [Open Source Guides](https://opensource.guide/finding-users/)。
-
-| 环节 | 2ndJot 的做法 |
-| --- | --- |
-| 让人看懂 | 一句话说明工作中冒出的想法如何存 Markdown 或钉为便签，配真实窗口 |
-| 让人能试 | 公开后用 Releases 提供安装包，写清首次选库、语言与安装限制 |
-| 找到使用者 | 中文用小红书；英文用相关 Mac／Obsidian 社区，先核对各自规则 |
-| 保持可信 | 回答安装、保存和内容保留问题，记录真实修复，不承诺固定更新频率 |
-
-D0 为实际公开日：首篇图文；D+3～5 根据首批问题补真实上手演示；D+10～14 有真实反馈或修复再更新。英文使用独立文案与 FAQ，不直接贴中文首篇。没有新信息就不硬发。
-
-先看用户能否独立装好、存下第一条，再参考访问、下载和 Star。这些数字不能直接等同于实际使用人数；不需要为宣传加入应用内统计。
-
-第一次使用 GitHub，先区分四个入口：**仓库**放源码与 README，**Release**提供安装附件，**Issue**接收问题，**Pull request**供他人提交修改。私有阶段只有获得访问权限的人能使用相应仓库入口。
+最终稿需等公开授权后投放。实际下载名、校验文件、版本标签与图 6 一起核对。打包和 CI 结果见[验证记录](VERIFICATION.md)，在另一台 Mac 试装的结果另行记录。Apple Silicon 应用包未公证，首次打开说明在 Release 和 README 中各保留一处入口。
