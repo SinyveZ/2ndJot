@@ -35,9 +35,13 @@
 
 ## 开始使用
 
-安装包为 **Apple Silicon Mac** 版本。目前提供体验包，也可[从源码构建](docs/DEVELOPMENT.md)。
+安装包适用于 **Apple Silicon Mac**，最低系统版本为 macOS 13。
 
-1. 解压体验包，将 `2ndJot.app` 放入“应用程序”文件夹。
+[下载 v1.6.0 安装包](https://github.com/SinyveZ/2ndJot/releases/download/v1.6.0/2ndJot-1.6.0-arm64.zip) · [源码包](https://github.com/SinyveZ/2ndJot/releases/download/v1.6.0/2ndJot-1.6.0-source.zip) · [SHA-256 校验值](https://github.com/SinyveZ/2ndJot/releases/download/v1.6.0/2ndJot-1.6.0-SHA256SUMS.txt) · [发布说明](https://github.com/SinyveZ/2ndJot/releases/tag/v1.6.0)
+
+也可以[从源码构建](docs/DEVELOPMENT.md)。
+
+1. 下载并解压安装包，将 `2ndJot.app` 放入“应用程序”文件夹。
 2. 打开应用，右键菜单栏图标，在 **设置 → 通用 → 保存位置** 选择 Obsidian 库或库内文件夹。
 3. 按 **⌃⇧Space**，输入想法，回车存盘，或点击图钉留为便签。便签可同时存在多个。
 4. 退出快捷输入时，按下Esc或再次按下快捷键 **⌃⇧Space 即可。**
@@ -101,9 +105,13 @@ Keep using your usual input method, including any voice input it offers, to get 
 
 ## Getting started
 
-A preview package is available for **Apple Silicon Macs**. You can also [build from source](docs/DEVELOPMENT.md).
+The installer requires an **Apple Silicon Mac** and macOS 13 or later.
 
-1. Unzip the preview package and move `2ndJot.app` into Applications.
+[Download v1.6.0 for Mac](https://github.com/SinyveZ/2ndJot/releases/download/v1.6.0/2ndJot-1.6.0-arm64.zip) · [Source ZIP](https://github.com/SinyveZ/2ndJot/releases/download/v1.6.0/2ndJot-1.6.0-source.zip) · [SHA-256 checksums](https://github.com/SinyveZ/2ndJot/releases/download/v1.6.0/2ndJot-1.6.0-SHA256SUMS.txt) · [Release notes](https://github.com/SinyveZ/2ndJot/releases/tag/v1.6.0)
+
+You can also [build from source](docs/DEVELOPMENT.md).
+
+1. Download and unzip the installer, then move `2ndJot.app` into Applications.
 2. Open the app and right-click its menu bar icon. In **Settings → General → Save Location**, choose an Obsidian vault or a folder inside it.
 3. Press **Control + Shift + Space** and enter a thought. Press Return to save it or click the pin to keep it as a sticky note. You can keep multiple desktop sticky notes open at once.
 4. To close Quick Capture, press **Esc** or press the same shortcut again (**Control + Shift + Space** by default).

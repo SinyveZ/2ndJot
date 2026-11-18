@@ -2,7 +2,7 @@
 
 ## Quick start
 
-2ndJot (双轨记, pronounced “Second Jot”) is an Objective-C / AppKit menu bar app. Version 1.6.0 (build 18) is a private preview. Use clang and Xcode Command Line Tools with a macOS 26+ SDK; Python 3 is also needed for checks and packaging.
+2ndJot (双轨记, pronounced “Second Jot”) is an Objective-C / AppKit menu bar app. Use clang and Xcode Command Line Tools with a macOS 26+ SDK; Python 3 is also needed for checks and packaging.
 
 ```sh
 ./build.sh                       # /private/tmp/YinSu-build/2ndJot.app
@@ -23,7 +23,7 @@ App-owned text switches immediately through **Settings → General → App langu
 
 图标由 `tools/build-assets.sh` 以源码矢量生成，并由 `iconutil` 打包为 ICNS；源码构建也包含这一步。
 
-目录：`src/` 是应用源码，`tools/check.sh` 是隔离自检，`.github/workflows/build.yml` 是构建和双语文件写入检查，`docs/launch/` 是公开前审阅材料。当前只进行私有预览与私有仓库验证，不公开发布。
+目录：`src/` 是应用源码，`tools/check.sh` 是隔离自检，`.github/workflows/build.yml` 是构建和双语文件写入检查，`docs/launch/` 收录首发准备与验证记录。
 
 ## 双语资源
 

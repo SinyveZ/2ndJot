@@ -1,6 +1,6 @@
-# 2ndJot 私有预览验证记录
+# 2ndJot v1.6.0 发布前验证记录
 
-日期：2026-11-17。当前候选：**1.6.0（build 18）**。中文名“双轨记”，英文名 **2ndJot**，读作 Second Jot。尚未公开发布。
+日期：2026-11-17。验证版本：**1.6.0（build 18）**。中文名“双轨记”，英文名 **2ndJot**，读作 Second Jot。以下记录来自公开前的私有测试阶段。
 
 ## 本地环境与检查
 
@@ -26,7 +26,7 @@
 
 ## GitHub 与验证边界
 
-私有仓库 [SinyveZ/2ndJot](https://github.com/SinyveZ/2ndJot) 已推送白名单源码，并通过 GitHub API 确认可见性为 private。未建立公开 Release。
+公开前，[SinyveZ/2ndJot](https://github.com/SinyveZ/2ndJot) 已推送白名单源码，并通过 GitHub API 确认可见性为 private。
 
 2026-11-17，[GitHub Actions 第一次运行](https://github.com/SinyveZ/2ndJot/actions/runs/44022113186) **通过**，对应源码提交 [`8823915`](https://github.com/SinyveZ/2ndJot/commit/8823915941ec3a7f5c48bb0633c22cd7a170a027)。实际日志确认：
 
@@ -38,6 +38,6 @@
 | 几何 | G3 连续曲率与内缩缩放短弧两组检查通过 |
 | 双语保存 | en 显示 2ndJot、zh-Hans 显示双轨记；两种语言均在各自临时库成功写入 Markdown |
 
-**English summary:** All 44 local application scenarios passed across English and Simplified Chinese. The linked GitHub Actions run also passed on macOS 26.7.2 / SDK 26.5 / arm64: build, signature and bundled resources, both geometry checks, and one isolated Markdown save per language. Full GUI interactions and live language switching were tested locally, rather than in CI. The repository remains private, with no public Release.
+**English summary:** All 44 local application scenarios passed across English and Simplified Chinese. The linked GitHub Actions run also passed on macOS 26.7.2 / SDK 26.5 / arm64: build, signature and bundled resources, both geometry checks, and one isolated Markdown save per language. Full GUI interactions and live language switching were tested locally, rather than in CI. These checks were performed before public release.
 
 另一台 Mac 从实际下载开始的首次安装尚未验证，当前 ad-hoc 包不能声称默认通过 Gatekeeper。Intel、macOS 13–26 的实际 GUI、输入法真实语音／组合输入及长期使用仍需实机验证。所有自动写入检查均使用隔离临时库，不操作真实笔记或输入法配置。
