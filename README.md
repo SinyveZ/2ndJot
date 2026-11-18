@@ -88,25 +88,25 @@ The Chinese name, 双轨记, refers to those two tracks. One is the work already
 
 ## One entry point, two destinations
 
-Press **Control + Shift + Space** to open Quick Capture. You can change the shortcut in Settings.
+By default, press **Control + Shift + Space** to open Quick Capture. You can change the shortcut in Settings.
 
 | Where it goes | What to do |
 | --- | --- |
 | Your note library | Press Return or click the floppy disk icon to save a separate `.md` file. You can have 2ndJot open it in Obsidian after saving. |
-| Your desktop | Click the pin to make a sticky note. You can keep multiple notes open, and each note remembers its text, position, window level, and size. When you close a note, you can choose to save a Markdown copy. |
+| Your desktop | Click the pin to make a sticky note. Its text, position, window level, and size are kept automatically. When you close a note, you can choose whether to save a Markdown copy. You can keep **multiple desktop sticky notes at the same time**. |
 
 In a sticky note, press Return for a new line or **Command + Return** to save a Markdown copy. Drag the circle at the upper left to move the window, or drag the lower right corner to resize a sticky note. Quick Capture and sticky notes have separate glass settings.
 
-Use your usual input method, including dictation if it supports it, to get a fleeting idea down quickly.
+Keep using your usual input method, including any voice input it offers, to get a fleeting idea onto the page a little faster.
 
 ## Getting started
 
-The preview package is for **Apple Silicon Macs**. You can also [build from source](docs/DEVELOPMENT.md).
+A preview package is available for **Apple Silicon Macs**. You can also [build from source](docs/DEVELOPMENT.md).
 
 1. Unzip the preview package and move `2ndJot.app` into Applications.
 2. Open the app and right-click its menu bar icon. In **Settings → General → Save Location**, choose an Obsidian vault or a folder inside it.
-3. Press **Control + Shift + Space** and enter a thought. Press Return to save it or click the pin to keep it as a sticky note.
-4. To close Quick Capture, press **Esc** or press your capture shortcut again.
+3. Press **Control + Shift + Space** and enter a thought. Press Return to save it or click the pin to keep it as a sticky note. You can keep multiple desktop sticky notes open at once.
+4. To close Quick Capture, press **Esc** or press the same shortcut again (**Control + Shift + Space** by default).
 
 Saving Markdown requires an Obsidian vault. Desktop sticky notes work on their own, without Obsidian. Left-click the menu bar icon to open Quick Capture, and right-click it to open the menu.
 
@@ -116,7 +116,7 @@ Apple has not notarized the package. If macOS blocks it on first launch, see [Ap
 
 ## English and Simplified Chinese
 
-2ndJot follows your system language by default. Switch between English and Simplified Chinese in **Settings → General → App language**. The change takes effect immediately.
+2ndJot supports English and Simplified Chinese and follows your system language by default. Switch at any time in **Settings → General → App language**. The change takes effect immediately, without restarting.
 
 ## Local storage
 
